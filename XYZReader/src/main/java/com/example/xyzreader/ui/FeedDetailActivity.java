@@ -11,6 +11,7 @@ import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -20,10 +21,13 @@ import com.example.xyzreader.data.ItemsContract;
 
 public class FeedDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final String LOG_TAG = FeedDetailActivity.class.getSimpleName();
+
     private Cursor mCursor;
     private long mStartId;
 
     private long mSelectedItemId;
+    private int mCurrentPos;
 
     private ViewPager mPager;
     private MyPagerAdapter mPagerAdapter;
@@ -49,6 +53,8 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
             public void onPageSelected(int position) {
                 if (mCursor != null) {
                     mCursor.moveToPosition(position);
+                    mCurrentPos = position;
+                    Log.d(LOG_TAG, "Current position " + mCurrentPos);
                 }
                 mSelectedItemId = mCursor.getLong(ArticleLoader.Query._ID);
             }
@@ -83,8 +89,9 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
             // TODO: optimize
             while (!mCursor.isAfterLast()) {
                 if (mCursor.getLong(ArticleLoader.Query._ID) == mStartId) {
-                    final int position = mCursor.getPosition();
-                    mPager.setCurrentItem(position, false);
+                    mCurrentPos = mCursor.getPosition();
+                    mPager.setCurrentItem(mCurrentPos, false);
+                    Log.d(LOG_TAG, "Current position " + mCurrentPos);
                     break;
                 }
                 mCursor.moveToNext();
@@ -128,6 +135,8 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
 
     public void onFABClick(View button) {
         if (mCursor != null) {
+            if (mCursor.getPosition() != mCurrentPos)
+                mCursor.moveToPosition(mCurrentPos);
             final String title = mCursor.getString(ArticleLoader.Query.TITLE);
             final String author = mCursor.getString(ArticleLoader.Query.AUTHOR);
             final String shareMsg = getString(R.string.share_action_msg, title, author);
