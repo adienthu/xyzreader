@@ -37,6 +37,7 @@
         app:layout_anchor="@id/pager"
         app:layout_anchorGravity="bottom|right|end"
         style="@style/detail_fab"
+        android:onClick="onFABClick"
          />
 </FrameLayout>
 

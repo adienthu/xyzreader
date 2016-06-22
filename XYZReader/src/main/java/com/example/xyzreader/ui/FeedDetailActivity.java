@@ -3,12 +3,15 @@ package com.example.xyzreader.ui;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.LoaderManager;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.app.ShareCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.xyzreader.R;
@@ -120,6 +123,18 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         @Override
         public int getCount() {
             return (mCursor != null) ? mCursor.getCount() : 0;
+        }
+    }
+
+    public void onFABClick(View button) {
+        if (mCursor != null) {
+            final String title = mCursor.getString(ArticleLoader.Query.TITLE);
+            final String author = mCursor.getString(ArticleLoader.Query.AUTHOR);
+            final String shareMsg = getString(R.string.share_action_msg, title, author);
+            startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(this)
+                    .setType("text/plain")
+                    .setText(shareMsg)
+                    .getIntent(), getString(R.string.action_share)));
         }
     }
 }
