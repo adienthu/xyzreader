@@ -114,17 +114,18 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         @Override
         public void setPrimaryItem(ViewGroup container, int position, Object object) {
             super.setPrimaryItem(container, position, object);
-//            ArticleDetailFragment fragment = (ArticleDetailFragment) object;
-//            if (fragment != null) {
-//                mSelectedItemUpButtonFloor = fragment.getUpButtonFloor();
-//                updateUpButtonPosition();
-//            }
         }
 
         @Override
         public Fragment getItem(int position) {
             mCursor.moveToPosition(position);
-            return ArticleDetailFragment.newInstance(mCursor.getLong(ArticleLoader.Query._ID));
+            return ArticleDetailFragment.newInstance(
+                    mCursor.getString(ArticleLoader.Query.TITLE),
+                    mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
+                    mCursor.getString(ArticleLoader.Query.AUTHOR),
+                    mCursor.getString(ArticleLoader.Query.THUMB_URL),
+                    mCursor.getString(ArticleLoader.Query.BODY)
+            );
         }
 
         @Override
