@@ -17,6 +17,7 @@
             android:fontFamily="sans-serif-medium"
             android:textStyle="bold"
             android:textSize="@dimen/detail_title_text_size"
+            android:textColor="@android:color/black"
             tools:text="Mysteries of the Universe Solved"/>
         <TextView
             android:id="@+id/text_view_subtitle"
@@ -45,6 +46,7 @@
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textSize="@dimen/detail_body_text_size"
+            android:textColor="@android:color/black"
             tools:text="The carbon in our apple pies hundreds of thousands of brilliant syntheses cosmic ocean Hypatia explorations across the centuries take root and flourish muse about with pretty stories for which there's little good evidence."/>
     </LinearLayout>
 </ScrollView>
