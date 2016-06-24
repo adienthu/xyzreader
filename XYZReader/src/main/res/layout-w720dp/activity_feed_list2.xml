@@ -2,6 +2,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:baselineAligned="false"
               android:divider="?android:attr/dividerHorizontal"
               android:orientation="horizontal"
@@ -17,9 +18,40 @@
         tools:layout="@layout/fragment_feed_list"/>
 
     <FrameLayout
-        android:id="@+id/feed_detail_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="4"/>
+        android:layout_weight="4">
+
+        <FrameLayout
+            android:id="@+id/feed_detail_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/image_view_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/empty_detail"
+            android:scaleType="centerInside"
+            android:visibility="gone"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_share"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_share"
+            app:fabSize="normal"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+            app:borderWidth="0dp"
+            android:layout_gravity="bottom|right"
+            app:layout_anchor="@id/feed_detail_container"
+            app:layout_anchorGravity="bottom|right|end"
+            style="@style/detail_fab"
+            android:onClick="onFABClick"
+            />
+
+    </FrameLayout>
+
 </LinearLayout>
 
