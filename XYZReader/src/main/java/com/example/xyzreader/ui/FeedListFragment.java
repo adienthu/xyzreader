@@ -18,35 +18,14 @@ import com.example.xyzreader.R;
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link EventCallback} and {@link DataSource} interfaces.
- * Use the {@link FeedListFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class FeedListFragment extends Fragment {
-
-    private static final String ARG_TOOLBAR_TITLE = "toolbar_title";
-
-    private String mToolbarTitle;
 
     private EventCallback mListener;
     private DataSource mDataSource;
 
     private RecyclerView mFeedsRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param toolbarTitle Toolbar title.
-     * @return A new instance of fragment FeedListFragment.
-     */
-    public static FeedListFragment newInstance(String toolbarTitle) {
-        FeedListFragment fragment = new FeedListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_TOOLBAR_TITLE, toolbarTitle);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public FeedListFragment() {
         // Required empty public constructor
@@ -55,9 +34,6 @@ public class FeedListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mToolbarTitle = getArguments().getString(ARG_TOOLBAR_TITLE);
-        }
     }
 
     @Override
@@ -66,7 +42,7 @@ public class FeedListFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_feed_list, container, false);
 
-        ((CollapsingToolbarLayout)rootView.findViewById(R.id.collapsing_toolbar_layout)).setTitle(mToolbarTitle);
+        ((CollapsingToolbarLayout)rootView.findViewById(R.id.collapsing_toolbar_layout)).setTitle(getString(R.string.app_name));
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
 

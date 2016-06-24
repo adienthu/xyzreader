@@ -14,31 +14,34 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".ui.FeedListActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.List">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <!--<activity-->
-            <!--android:name=".ui.ArticleDetailActivity"-->
-            <!--android:parentActivityName=".ui.FeedListActivity" >-->
+            <!--android:name=".ui.FeedListActivity"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:theme="@style/AppTheme.List" >-->
             <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.VIEW" />-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-
-                <!--<data android:mimeType="vnd.android.cursor.item/vnd.com.example.xyzreader.items" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
-
-            <!--<meta-data-->
-                <!--android:name="android.support.PARENT_ACTIVITY"-->
-                <!--android:value=".ui.FeedListActivity" />-->
         <!--</activity>-->
+        <!-- <activity -->
+        <!-- android:name=".ui.ArticleDetailActivity" -->
+        <!-- android:parentActivityName=".ui.FeedListActivity" > -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.VIEW" /> -->
+
+
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+
+
+        <!-- <data android:mimeType="vnd.android.cursor.item/vnd.com.example.xyzreader.items" /> -->
+        <!-- </intent-filter> -->
+
+
+        <!-- <meta-data -->
+        <!-- android:name="android.support.PARENT_ACTIVITY" -->
+        <!-- android:value=".ui.FeedListActivity" /> -->
+        <!-- </activity> -->
 
         <service
             android:name=".data.UpdaterService"
@@ -52,7 +55,7 @@
         <activity
             android:name=".ui.FeedDetailActivity"
             android:label=""
-            android:parentActivityName=".ui.FeedListActivity" >
+            android:parentActivityName=".ui.FeedListActivity2" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -60,9 +63,20 @@
 
                 <data android:mimeType="vnd.android.cursor.item/vnd.com.example.xyzreader.items" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.xyzreader.ui.FeedListActivity" />
+                android:value="com.example.xyzreader.ui.FeedListActivity2" />
+        </activity>
+        <activity
+            android:name=".ui.FeedListActivity2"
+            android:label="@string/title_activity_feed_list2"
+            android:theme="@style/AppTheme.List">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
