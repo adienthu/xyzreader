@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
+import android.view.View;
 
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
@@ -18,8 +19,11 @@ import com.example.xyzreader.data.UpdaterService;
 
 public class FeedListActivity2 extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, FeedListFragment.EventCallback, FeedListFragment.DataSource {
 
+    private final static String DETAIL_FRAGMENT_TAG = "DFTAG";
+
     private Cursor mCursor;
     private FeedListFragment mListFragment;
+    private boolean mTwoPane = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,19 @@ public class FeedListActivity2 extends AppCompatActivity implements LoaderManage
         getLoaderManager().initLoader(0, null, this);
 
         mListFragment = (FeedListFragment)getFragmentManager().findFragmentByTag(getString(R.string.list_fragment_tag));
+        View detailFragmentContainer = findViewById(R.id.feed_detail_container);
+        if (detailFragmentContainer != null ) {
+            // Two-pane layout
+            mTwoPane = true;
+
+//            if (savedInstanceState == null) {
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.feed_detail_container, new ArticleDetailFragment(), DETAIL_FRAGMENT_TAG)
+//                        .commit();
+//            }
+        }else {
+            mTwoPane = false;
+        }
 
         if (savedInstanceState == null) {
             refresh();
@@ -52,14 +69,12 @@ public class FeedListActivity2 extends AppCompatActivity implements LoaderManage
         unregisterReceiver(mRefreshingReceiver);
     }
 
-    private boolean mIsRefreshing = false;
-
     private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
-                mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
-                if (mIsRefreshing)
+                boolean isRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
+                if (isRefreshing)
                     mListFragment.startRefreshUI();
                 else
                     mListFragment.stopRefreshUI();
@@ -118,8 +133,25 @@ public class FeedListActivity2 extends AppCompatActivity implements LoaderManage
 
     @Override
     public void onFeedSelected(int position) {
-        startActivity(new Intent(Intent.ACTION_VIEW,
-                ItemsContract.Items.buildItemUri(getFeedItemId(position))));
+        if (!mTwoPane) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    ItemsContract.Items.buildItemUri(getFeedItemId(position))));
+        }else {
+            if (mCursor != null) {
+                mCursor.moveToPosition(position);
+                ArticleDetailFragment detailFragment = ArticleDetailFragment.newInstance(
+                        mCursor.getString(ArticleLoader.Query.TITLE),
+                        mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
+                        mCursor.getString(ArticleLoader.Query.AUTHOR),
+                        mCursor.getString(ArticleLoader.Query.THUMB_URL),
+                        mCursor.getString(ArticleLoader.Query.BODY)
+                );
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.feed_detail_container, detailFragment, DETAIL_FRAGMENT_TAG)
+                        .commit();
+            }
+        }
+
     }
 
     @Override

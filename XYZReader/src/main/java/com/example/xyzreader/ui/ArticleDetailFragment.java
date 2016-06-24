@@ -1,7 +1,7 @@
 package com.example.xyzreader.ui;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.xyzreader.R;
+
+;
 
 /**
  * A fragment representing a single Article detail screen. This fragment is
