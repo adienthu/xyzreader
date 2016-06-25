@@ -2,16 +2,14 @@ package com.example.xyzreader.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.text.Html;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.xyzreader.R;
-
-;
 
 /**
  * A fragment representing a single Article detail screen. This fragment is
@@ -73,6 +71,16 @@ public class ArticleDetailFragment extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_feed_detail, container, false);
         bindViews(rootView);
+
+        final NestedScrollView imageContainer = (NestedScrollView)rootView.findViewById(R.id.image_container);
+        ObservableNestedScrollView textContainer = (ObservableNestedScrollView)rootView.findViewById(R.id.text_container);
+        textContainer.setOnScrollListener(new ObservableNestedScrollView.OnScrollListener() {
+            @Override
+            public void onScroll(int dx, int dy) {
+                imageContainer.smoothScrollBy((int)Math.floor(dx*0.75), (int)Math.floor(dy*0.75));
+            }
+        });
+
         return rootView;
     }
 
@@ -81,17 +89,17 @@ public class ArticleDetailFragment extends Fragment {
             return;
         }
 
-        rootView.setVisibility(View.VISIBLE);
-        TextView titleLabel = (TextView)rootView.findViewById(R.id.text_view_title);
-        titleLabel.setText(getArguments().getString(ARG_TITLE));
-
-        TextView subtitleLabel = (TextView)rootView.findViewById(R.id.text_view_subtitle);
-        String publishDate = DateUtils.getRelativeTimeSpanString(
-                getArguments().getLong(ARG_PUBLISH_DATE),
-                System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-                DateUtils.FORMAT_ABBREV_ALL).toString();
-        String author = getArguments().getString(ARG_AUTHOR);
-        subtitleLabel.setText(publishDate + " by " + author);
+//        rootView.setVisibility(View.VISIBLE);
+//        TextView titleLabel = (TextView)rootView.findViewById(R.id.text_view_title);
+//        titleLabel.setText(getArguments().getString(ARG_TITLE));
+//
+//        TextView subtitleLabel = (TextView)rootView.findViewById(R.id.text_view_subtitle);
+//        String publishDate = DateUtils.getRelativeTimeSpanString(
+//                getArguments().getLong(ARG_PUBLISH_DATE),
+//                System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
+//                DateUtils.FORMAT_ABBREV_ALL).toString();
+//        String author = getArguments().getString(ARG_AUTHOR);
+//        subtitleLabel.setText(publishDate + " by " + author);
 
 //        DynamicHeightNetworkImageView feedImage = (DynamicHeightNetworkImageView)rootView.findViewById(R.id.image_view_feed_image);
 //        feedImage.setImageUrl(
