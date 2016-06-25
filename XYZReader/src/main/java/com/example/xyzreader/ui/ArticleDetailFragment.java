@@ -93,10 +93,10 @@ public class ArticleDetailFragment extends Fragment {
         String author = getArguments().getString(ARG_AUTHOR);
         subtitleLabel.setText(publishDate + " by " + author);
 
-        DynamicHeightNetworkImageView feedImage = (DynamicHeightNetworkImageView)rootView.findViewById(R.id.image_view_feed_image);
-        feedImage.setImageUrl(
-                getArguments().getString(ARG_IMG_URL),
-                ImageLoaderHelper.getInstance(getActivity()).getImageLoader());
+//        DynamicHeightNetworkImageView feedImage = (DynamicHeightNetworkImageView)rootView.findViewById(R.id.image_view_feed_image);
+//        feedImage.setImageUrl(
+//                getArguments().getString(ARG_IMG_URL),
+//                ImageLoaderHelper.getInstance(getActivity()).getImageLoader());
 
         TextView bodyLabel = (TextView)rootView.findViewById(R.id.text_view_feed_body);
         bodyLabel.setText(Html.fromHtml(getArguments().getString(ARG_BODY)));

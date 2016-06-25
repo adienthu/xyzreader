@@ -55,6 +55,7 @@
         <activity
             android:name=".ui.FeedDetailActivity"
             android:label=""
+            android:theme="@style/AppTheme.List"
             android:parentActivityName=".ui.FeedListActivity2" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
