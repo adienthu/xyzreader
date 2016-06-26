@@ -99,6 +99,20 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:elevation="4dp"
         />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_share"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_share"
+            app:fabSize="normal"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+            app:borderWidth="0dp"
+            android:layout_gravity="bottom|right"
+            app:layout_anchor="@id/pager"
+            app:layout_anchorGravity="bottom|right|end"
+            style="@style/detail_fab"
+            android:onClick="onFABClick"/>
 </FrameLayout>
 
 <!--<android.support.v4.view.ViewPager-->

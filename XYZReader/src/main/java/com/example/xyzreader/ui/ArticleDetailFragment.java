@@ -1,5 +1,6 @@
 package com.example.xyzreader.ui;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
@@ -118,6 +119,17 @@ public class ArticleDetailFragment extends Fragment {
     // TODO: remove
     public int getUpButtonFloor() {
         return 0;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mOnScrollListener = (OnScrollListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnScrollListener");
+        }
     }
 
     public void setOnScrollListener(OnScrollListener onScrollListener) {

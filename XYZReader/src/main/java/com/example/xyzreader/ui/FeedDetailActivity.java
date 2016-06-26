@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -35,6 +36,7 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
     private MyPagerAdapter mPagerAdapter;
 
     private Toolbar mToolbar;
+    private FloatingActionButton mFAB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,8 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("My Feeds");
+
+        mFAB = (FloatingActionButton)findViewById(R.id.fab_share);
 
         if (savedInstanceState == null) {
             if (getIntent() != null && getIntent().getData() != null) {
@@ -117,6 +121,7 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public void contentScrolled(int scrollY, int dy) {
+        Log.d(LOG_TAG, "Content scrolled");
         if (dy > 0) {
             if (mToolbar.getTranslationY() == 0)
             {
@@ -129,6 +134,12 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
                 animator.start();
             }
 
+            if (mFAB.getTranslationY() == 0)
+            {
+                ObjectAnimator animator = ObjectAnimator.ofFloat(mFAB, "translationY", 0, mFAB.getMeasuredHeight()+mFAB.getPaddingBottom());
+                animator.setDuration(250);
+                animator.start();
+            }
         }else if (dy < -10){
             if (mToolbar.getTranslationY() == -mToolbar.getMeasuredHeight())
             {
@@ -136,6 +147,13 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
 //                TransitionManager.beginDelayedTransition(mToolbar, slide);
 //                mToolbar.setVisibility(View.VISIBLE);
                 ObjectAnimator animator = ObjectAnimator.ofFloat(mToolbar, "translationY", -mToolbar.getMeasuredHeight(), 0);
+                animator.setDuration(250);
+                animator.start();
+            }
+
+            if (mFAB.getTranslationY() == mFAB.getMeasuredHeight()+mFAB.getPaddingBottom())
+            {
+                ObjectAnimator animator = ObjectAnimator.ofFloat(mFAB, "translationY", mFAB.getMeasuredHeight()+mFAB.getPaddingBottom(), 0);
                 animator.setDuration(250);
                 animator.start();
             }
@@ -155,15 +173,15 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         @Override
         public Fragment getItem(int position) {
             mCursor.moveToPosition(position);
-            ArticleDetailFragment fragment = ArticleDetailFragment.newInstance(
+            return ArticleDetailFragment.newInstance(
                     mCursor.getString(ArticleLoader.Query.TITLE),
                     mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
                     mCursor.getString(ArticleLoader.Query.AUTHOR),
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     mCursor.getString(ArticleLoader.Query.BODY)
             );
-            fragment.setOnScrollListener(FeedDetailActivity.this);
-            return fragment;
+//            fragment.setOnScrollListener(FeedDetailActivity.this);
+//            return fragment;
         }
 
         @Override
