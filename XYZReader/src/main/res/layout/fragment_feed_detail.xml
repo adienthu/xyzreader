@@ -159,7 +159,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <ImageView
+            <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/image_view_feed_image"
                 android:layout_width="match_parent"
                 android:layout_height="600dp"

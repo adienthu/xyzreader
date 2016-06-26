@@ -1,12 +1,13 @@
 package com.example.xyzreader.ui;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.animation.ObjectAnimator;
 import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.view.ViewPager;
@@ -20,7 +21,7 @@ import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
 
-public class FeedDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class FeedDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, ArticleDetailFragment.OnScrollListener {
 
     private static final String LOG_TAG = FeedDetailActivity.class.getSimpleName();
 
@@ -32,6 +33,8 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
 
     private ViewPager mPager;
     private MyPagerAdapter mPagerAdapter;
+
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +69,8 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
             }
         });
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("My Feeds");
 
@@ -112,6 +115,33 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         mPagerAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void contentScrolled(int scrollY, int dy) {
+        if (dy > 0) {
+            if (mToolbar.getTranslationY() == 0)
+            {
+//                Slide slide = new Slide(Gravity.TOP);
+//                TransitionManager.beginDelayedTransition(mToolbar, slide);
+//                mToolbar.setVisibility(View.INVISIBLE);
+
+                ObjectAnimator animator = ObjectAnimator.ofFloat(mToolbar, "translationY", 0, -mToolbar.getMeasuredHeight());
+                animator.setDuration(250);
+                animator.start();
+            }
+
+        }else if (dy < -10){
+            if (mToolbar.getTranslationY() == -mToolbar.getMeasuredHeight())
+            {
+//                Slide slide = new Slide(Gravity.TOP);
+//                TransitionManager.beginDelayedTransition(mToolbar, slide);
+//                mToolbar.setVisibility(View.VISIBLE);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(mToolbar, "translationY", -mToolbar.getMeasuredHeight(), 0);
+                animator.setDuration(250);
+                animator.start();
+            }
+        }
+    }
+
     private class MyPagerAdapter extends FragmentStatePagerAdapter {
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -125,13 +155,15 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         @Override
         public Fragment getItem(int position) {
             mCursor.moveToPosition(position);
-            return ArticleDetailFragment.newInstance(
+            ArticleDetailFragment fragment = ArticleDetailFragment.newInstance(
                     mCursor.getString(ArticleLoader.Query.TITLE),
                     mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
                     mCursor.getString(ArticleLoader.Query.AUTHOR),
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     mCursor.getString(ArticleLoader.Query.BODY)
             );
+            fragment.setOnScrollListener(FeedDetailActivity.this);
+            return fragment;
         }
 
         @Override

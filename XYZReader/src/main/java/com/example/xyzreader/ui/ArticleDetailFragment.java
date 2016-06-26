@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.xyzreader.R;
 
 /**
@@ -27,6 +28,8 @@ public class ArticleDetailFragment extends Fragment {
     public static final String ARG_AUTHOR = "author";
     public static final String ARG_IMG_URL = "img_url";
     public static final String ARG_BODY = "body";
+
+    private OnScrollListener mOnScrollListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -73,11 +76,13 @@ public class ArticleDetailFragment extends Fragment {
         bindViews(rootView);
 
         final NestedScrollView imageContainer = (NestedScrollView)rootView.findViewById(R.id.image_container);
-        ObservableNestedScrollView textContainer = (ObservableNestedScrollView)rootView.findViewById(R.id.text_container);
+        final ObservableNestedScrollView textContainer = (ObservableNestedScrollView)rootView.findViewById(R.id.text_container);
         textContainer.setOnScrollListener(new ObservableNestedScrollView.OnScrollListener() {
             @Override
             public void onScroll(int dx, int dy) {
-                imageContainer.smoothScrollBy((int)Math.floor(dx*0.75), (int)Math.floor(dy*0.75));
+                imageContainer.smoothScrollBy((int) Math.floor(dx * 0.75), (int) Math.floor(dy * 0.75));
+                if (mOnScrollListener != null)
+                    mOnScrollListener.contentScrolled(textContainer.getScrollY(), dy);
             }
         });
 
@@ -101,10 +106,10 @@ public class ArticleDetailFragment extends Fragment {
 //        String author = getArguments().getString(ARG_AUTHOR);
 //        subtitleLabel.setText(publishDate + " by " + author);
 
-//        DynamicHeightNetworkImageView feedImage = (DynamicHeightNetworkImageView)rootView.findViewById(R.id.image_view_feed_image);
-//        feedImage.setImageUrl(
-//                getArguments().getString(ARG_IMG_URL),
-//                ImageLoaderHelper.getInstance(getActivity()).getImageLoader());
+        NetworkImageView feedImage = (NetworkImageView)rootView.findViewById(R.id.image_view_feed_image);
+        feedImage.setImageUrl(
+                getArguments().getString(ARG_IMG_URL),
+                ImageLoaderHelper.getInstance(getActivity()).getImageLoader());
 
         TextView bodyLabel = (TextView)rootView.findViewById(R.id.text_view_feed_body);
         bodyLabel.setText(Html.fromHtml(getArguments().getString(ARG_BODY)));
@@ -113,5 +118,13 @@ public class ArticleDetailFragment extends Fragment {
     // TODO: remove
     public int getUpButtonFloor() {
         return 0;
+    }
+
+    public void setOnScrollListener(OnScrollListener onScrollListener) {
+        this.mOnScrollListener = onScrollListener;
+    }
+
+    interface OnScrollListener {
+        void contentScrolled(int scrollY, int dy);
     }
 }
