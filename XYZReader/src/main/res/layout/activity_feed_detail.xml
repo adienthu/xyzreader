@@ -51,23 +51,56 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
         <!--android:id="@+id/pager"-->
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+        <!--/>-->
 
     <!--<android.support.design.widget.AppBarLayout-->
         <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:alpha="0">-->
+
+        <!--&lt;!&ndash;<android.support.design.widget.CollapsingToolbarLayout&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="400dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:layout_scrollFlags="scroll|exitUntilCollapsed"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:contentScrim="?attr/colorPrimary"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:alpha="0">&ndash;&gt;-->
+
+            <!--&lt;!&ndash; &ndash;&gt;-->
+
+        <!--&lt;!&ndash;</android.support.design.widget.CollapsingToolbarLayout>&ndash;&gt;-->
 
         <!--<android.support.v7.widget.Toolbar-->
             <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--app:layout_scrollFlags="scroll|enterAlways"/>-->
+            <!--android:layout_height="64dp"-->
+            <!--app:layout_scrollFlags="scroll|exitUntilCollapsed"-->
+            <!--android:alpha="0"/>-->
 
     <!--</android.support.design.widget.AppBarLayout>-->
 
 <!--</android.support.design.widget.CoordinatorLayout>-->
 
-<android.support.v4.view.ViewPager
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/pager"
-    xmlns:android="http://schemas.android.com/apk/res/android"/>
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pager"
+        />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
+</FrameLayout>
+
+<!--<android.support.v4.view.ViewPager-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:id="@+id/pager"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"/>-->

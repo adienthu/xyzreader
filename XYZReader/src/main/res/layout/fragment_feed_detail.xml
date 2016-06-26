@@ -139,14 +139,16 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
-             android:layout_height="match_parent">
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v4.widget.NestedScrollView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/image_container"
         android:layout_width="match_parent"
-        android:layout_height="600dp">
+        android:layout_height="400dp"
+        >
 
         <!--<android.support.v4.widget.NestedScrollView-->
         <!--android:layout_width="match_parent"-->
@@ -160,7 +162,7 @@
             <ImageView
                 android:id="@+id/image_view_feed_image"
                 android:layout_width="match_parent"
-                android:layout_height="800dp"
+                android:layout_height="600dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/p004"
                 />
@@ -182,7 +184,7 @@
                 android:id="@+id/text_view_feed_body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="600dp"
+                android:layout_marginTop="400dp"
                 android:fontFamily="sans-serif"
                 android:textStyle="normal"
                 android:textSize="@dimen/detail_body_text_size"
