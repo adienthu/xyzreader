@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.text.Html;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +82,7 @@ public class ArticleDetailFragment extends Fragment {
         textContainer.setOnScrollListener(new ObservableNestedScrollView.OnScrollListener() {
             @Override
             public void onScroll(int dx, int dy) {
-                imageContainer.smoothScrollBy((int) Math.floor(dx * 0.75), (int) Math.floor(dy * 0.75));
+                imageContainer.scrollBy(0, (int) Math.floor(dy * 0.5));
                 if (mOnScrollListener != null)
                     mOnScrollListener.contentScrolled(textContainer.getScrollY(), dy);
             }
@@ -96,16 +97,16 @@ public class ArticleDetailFragment extends Fragment {
         }
 
 //        rootView.setVisibility(View.VISIBLE);
-//        TextView titleLabel = (TextView)rootView.findViewById(R.id.text_view_title);
-//        titleLabel.setText(getArguments().getString(ARG_TITLE));
-//
-//        TextView subtitleLabel = (TextView)rootView.findViewById(R.id.text_view_subtitle);
-//        String publishDate = DateUtils.getRelativeTimeSpanString(
-//                getArguments().getLong(ARG_PUBLISH_DATE),
-//                System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-//                DateUtils.FORMAT_ABBREV_ALL).toString();
-//        String author = getArguments().getString(ARG_AUTHOR);
-//        subtitleLabel.setText(publishDate + " by " + author);
+        TextView titleLabel = (TextView)rootView.findViewById(R.id.text_view_title);
+        titleLabel.setText(getArguments().getString(ARG_TITLE));
+
+        TextView subtitleLabel = (TextView)rootView.findViewById(R.id.text_view_subtitle);
+        String publishDate = DateUtils.getRelativeTimeSpanString(
+                getArguments().getLong(ARG_PUBLISH_DATE),
+                System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
+                DateUtils.FORMAT_ABBREV_ALL).toString();
+        String author = getArguments().getString(ARG_AUTHOR);
+        subtitleLabel.setText(publishDate + " by " + author);
 
         NetworkImageView feedImage = (NetworkImageView)rootView.findViewById(R.id.image_view_feed_image);
         feedImage.setImageUrl(

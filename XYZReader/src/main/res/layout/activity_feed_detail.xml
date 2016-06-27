@@ -93,11 +93,11 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="@dimen/toolbar_height"
         android:background="?attr/colorPrimary"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:elevation="4dp"
+        android:elevation="@dimen/toolbar_elevation"
         />
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_share"
@@ -108,7 +108,7 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:borderWidth="0dp"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="bottom|end"
             app:layout_anchor="@id/pager"
             app:layout_anchorGravity="bottom|right|end"
             style="@style/detail_fab"

@@ -15,4 +15,11 @@
     <dimen name="detail_metabar_title_bottom_padding">4dp</dimen>
     <dimen name="detail_body_top_margin">16dp</dimen>
     <dimen name="detail_body_bottom_margin">88dp</dimen>
+
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="detail_text_top_margin">240dp</dimen>
+    <dimen name="hero_image_height">420dp</dimen>
+    <dimen name="hero_image_bottom_padding">180dp</dimen>
+
 </resources>
