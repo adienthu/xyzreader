@@ -74,7 +74,7 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         mToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("My Feeds");
+        getSupportActionBar().setTitle(getString(R.string.title_activity_feed_detail));
 
         mFAB = (FloatingActionButton)findViewById(R.id.fab_share);
 
