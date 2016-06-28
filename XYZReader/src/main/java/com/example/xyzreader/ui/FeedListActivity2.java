@@ -6,14 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
-import android.view.View;
 
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
@@ -26,8 +22,6 @@ public class FeedListActivity2 extends AppCompatActivity implements LoaderManage
 
     private Cursor mCursor;
     private FeedListFragment mListFragment;
-    private boolean mTwoPane = false;
-    private int mCurrentPos = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,24 +31,6 @@ public class FeedListActivity2 extends AppCompatActivity implements LoaderManage
         getLoaderManager().initLoader(0, null, this);
 
         mListFragment = (FeedListFragment)getFragmentManager().findFragmentByTag(getString(R.string.list_fragment_tag));
-        View detailFragmentContainer = findViewById(R.id.feed_detail_container);
-        if (detailFragmentContainer != null ) {
-            // Two-pane layout
-            mTwoPane = true;
-
-            FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab_share);
-            fab.setVisibility(View.INVISIBLE);
-            findViewById(R.id.image_view_empty).setVisibility(View.VISIBLE);
-            detailFragmentContainer.setVisibility(View.INVISIBLE);
-//            if (savedInstanceState == null) {
-//                ArticleDetailFragment detailFragment = (ArticleDetailFragment)getSupportFragmentManager().findFragmentByTag(DETAIL_FRAGMENT_TAG);
-//                if (detailFragment != null)
-//                    getSupportFragmentManager().beginTransaction()
-//                        .remove(detailFragment).commit();
-//            }
-        }else {
-            mTwoPane = false;
-        }
 
         if (savedInstanceState == null) {
             refresh();
@@ -141,33 +117,18 @@ public class FeedListActivity2 extends AppCompatActivity implements LoaderManage
     }
 
     @Override
-    public void onFeedSelected(int position) {
-        if (!mTwoPane) {
-            startActivity(new Intent(Intent.ACTION_VIEW,
-                    ItemsContract.Items.buildItemUri(getFeedItemId(position))));
-        }else {
-            if (mCursor != null) {
-                mCurrentPos = position;
-                mCursor.moveToPosition(position);
-                ArticleDetailFragment detailFragment = ArticleDetailFragment.newInstance(
-                        mCursor.getString(ArticleLoader.Query.TITLE),
-                        mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
-                        mCursor.getString(ArticleLoader.Query.AUTHOR),
-                        mCursor.getString(ArticleLoader.Query.THUMB_URL),
-                        mCursor.getString(ArticleLoader.Query.BODY)
-                );
-                findViewById(R.id.feed_detail_container).setVisibility(View.VISIBLE);
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.feed_detail_container, detailFragment, DETAIL_FRAGMENT_TAG)
-                        .commit();
-
-                // show fab
-                findViewById(R.id.fab_share).setVisibility(View.VISIBLE);
-                // hide empty view
-                findViewById(R.id.image_view_empty).setVisibility(View.GONE);
-            }
+    public float getFeedImageAspectRatio(int position) {
+        if (mCursor != null) {
+            mCursor.moveToPosition(position);
+            return mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO);
         }
+        return 1.5f;
+    }
 
+    @Override
+    public void onFeedSelected(int position) {
+        startActivity(new Intent(Intent.ACTION_VIEW,
+                ItemsContract.Items.buildItemUri(getFeedItemId(position))));
     }
 
     @Override
@@ -185,27 +146,5 @@ public class FeedListActivity2 extends AppCompatActivity implements LoaderManage
     public void onLoaderReset(Loader<Cursor> loader) {
         mCursor = null;
         mListFragment.refreshFeeds();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        if (mTwoPane && mCurrentPos!=-1) {
-            findViewById(R.id.fab_share).setVisibility(View.VISIBLE);
-        }
-    }
-
-    public void onFABClick(View view) {
-        if (mTwoPane && mCursor != null) {
-            if (mCursor.getPosition() != mCurrentPos)
-                mCursor.moveToPosition(mCurrentPos);
-            final String title = mCursor.getString(ArticleLoader.Query.TITLE);
-            final String author = mCursor.getString(ArticleLoader.Query.AUTHOR);
-            final String shareMsg = getString(R.string.share_action_msg, title, author);
-            startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(this)
-                    .setType("text/plain")
-                    .setText(shareMsg)
-                    .getIntent(), getString(R.string.action_share)));
-        }
     }
 }

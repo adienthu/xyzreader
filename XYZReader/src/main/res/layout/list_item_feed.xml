@@ -1,46 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:paddingStart="16dp"
-              android:paddingEnd="16dp"
-              android:layout_marginTop="4dp"
-              android:layout_marginBottom="4dp"
-              >
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:foreground="?selectableItemBackground">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="3">
+        android:orientation="vertical">
+
+        <!--suppress AndroidLintContentDescription -->
+        <com.example.xyzreader.ui.DynamicHeightNetworkImageView
+            android:id="@+id/image_view_feed_image"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/photo_placeholder" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            tools:text="Mysteries of the Universe Solved"
             android:id="@+id/text_view_title"
-            />
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="4dp"
+            android:ellipsize="end"
+            android:maxLines="4" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/text_view_subtitle"
+            style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            tools:text="20 Jun 2013 by Carl Sagan"
-            android:id="@+id/text_view_subtitle"/>
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+            android:textColor="#6000"
+            android:maxLines="3"
+            android:ellipsize="end" />
     </LinearLayout>
 
-    <com.example.xyzreader.ui.DynamicHeightNetworkImageView
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:id="@+id/image_view_feed_image"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_margin="@dimen/abc_control_inset_material"
-        android:scaleType="centerCrop"
-        android:background="@color/photo_placeholder"/>
-
-</LinearLayout>
+</android.support.v7.widget.CardView>

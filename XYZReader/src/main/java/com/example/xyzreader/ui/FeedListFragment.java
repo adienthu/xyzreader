@@ -5,8 +5,8 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +47,11 @@ public class FeedListFragment extends Fragment {
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
 
         mFeedsRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_feeds);
-        mFeedsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        mFeedsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        int columnCount = getResources().getInteger(R.integer.list_column_count);
+        StaggeredGridLayoutManager sglm =
+                new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
+        mFeedsRecyclerView.setLayoutManager(sglm);
         mFeedsRecyclerView.setAdapter(new Adapter());
         return rootView;
     }
@@ -83,7 +87,7 @@ public class FeedListFragment extends Fragment {
             holder.feedImage.setImageUrl(
                     mDataSource.getFeedImageURL(position),
                     ImageLoaderHelper.getInstance(getActivity()).getImageLoader());
-//            holder.feedImage.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
+            holder.feedImage.setAspectRatio(mDataSource.getFeedImageAspectRatio(position));
         }
 
         @Override
@@ -152,6 +156,7 @@ public class FeedListFragment extends Fragment {
         String getFeedTitle(int position);
         String getFeedByline(int position);
         String getFeedImageURL(int position);
+        float getFeedImageAspectRatio(int position);
     }
 
 }
