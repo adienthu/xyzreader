@@ -23,7 +23,7 @@
         <item name="colorAccent">#00bcd4</item>
     </style>
 
-    <style name="AppTheme.List" parent="AppTheme">
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

@@ -55,7 +55,7 @@
         <activity
             android:name=".ui.FeedDetailActivity"
             android:label=""
-            android:theme="@style/AppTheme.List"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.FeedListActivity2" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -72,7 +72,7 @@
         <activity
             android:name=".ui.FeedListActivity2"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.List">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
