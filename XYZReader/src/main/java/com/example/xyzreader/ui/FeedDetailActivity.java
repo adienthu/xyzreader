@@ -22,7 +22,7 @@ import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
 
-public class FeedDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, ArticleDetailFragment.OnScrollListener {
+public class FeedDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, ArticleDetailFragment.DetailFragmentEventListener {
 
     private static final String LOG_TAG = FeedDetailActivity.class.getSimpleName();
 
@@ -119,45 +119,48 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         mPagerAdapter.notifyDataSetChanged();
     }
 
+    private boolean isBarAndButtonVisible() {
+        return mToolbar.getTranslationY() == 0;
+    }
+
+    private void makeBarAndButtonVisible() {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(mToolbar, "translationY", -mToolbar.getMeasuredHeight(), 0);
+        animator.setDuration(250);
+        animator.start();
+
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(mFAB, "translationY", mFAB.getMeasuredHeight()+mFAB.getPaddingBottom(), 0);
+        animator2.setDuration(250);
+        animator2.start();
+    }
+
+    private void makeBarAndButtonInvisible() {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(mToolbar, "translationY", 0, -mToolbar.getMeasuredHeight());
+        animator.setDuration(250);
+        animator.start();
+
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(mFAB, "translationY", 0, mFAB.getMeasuredHeight()+mFAB.getPaddingBottom());
+        animator2.setDuration(250);
+        animator2.start();
+    }
+
+    private void toggleBarAndButtonVisibility() {
+        if (isBarAndButtonVisible())
+            makeBarAndButtonInvisible();
+        else
+            makeBarAndButtonVisible();
+    }
+
     @Override
-    public void contentScrolled(int scrollY, int dy) {
-//        Log.d(LOG_TAG, "Content scrolled");
-        if (dy > 0) {
-            if (mToolbar.getTranslationY() == 0)
-            {
-//                Slide slide = new Slide(Gravity.TOP);
-//                TransitionManager.beginDelayedTransition(mToolbar, slide);
-//                mToolbar.setVisibility(View.INVISIBLE);
+    public void onScroll(int scrollY, int dy) {
+        if (dy > 5 && isBarAndButtonVisible())
+            makeBarAndButtonInvisible();
+        else if (dy < -10 && !isBarAndButtonVisible())
+            makeBarAndButtonVisible();
+    }
 
-                ObjectAnimator animator = ObjectAnimator.ofFloat(mToolbar, "translationY", 0, -mToolbar.getMeasuredHeight());
-                animator.setDuration(250);
-                animator.start();
-            }
-
-            if (mFAB.getTranslationY() == 0)
-            {
-                ObjectAnimator animator = ObjectAnimator.ofFloat(mFAB, "translationY", 0, mFAB.getMeasuredHeight()+mFAB.getPaddingBottom());
-                animator.setDuration(250);
-                animator.start();
-            }
-        }else if (dy < -10){
-            if (mToolbar.getTranslationY() == -mToolbar.getMeasuredHeight())
-            {
-//                Slide slide = new Slide(Gravity.TOP);
-//                TransitionManager.beginDelayedTransition(mToolbar, slide);
-//                mToolbar.setVisibility(View.VISIBLE);
-                ObjectAnimator animator = ObjectAnimator.ofFloat(mToolbar, "translationY", -mToolbar.getMeasuredHeight(), 0);
-                animator.setDuration(250);
-                animator.start();
-            }
-
-            if (mFAB.getTranslationY() == mFAB.getMeasuredHeight()+mFAB.getPaddingBottom())
-            {
-                ObjectAnimator animator = ObjectAnimator.ofFloat(mFAB, "translationY", mFAB.getMeasuredHeight()+mFAB.getPaddingBottom(), 0);
-                animator.setDuration(250);
-                animator.start();
-            }
-        }
+    @Override
+    public void onSingleTap() {
+        toggleBarAndButtonVisibility();
     }
 
     private class MyPagerAdapter extends FragmentStatePagerAdapter {
@@ -180,8 +183,6 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     mCursor.getString(ArticleLoader.Query.BODY)
             );
-//            fragment.setOnScrollListener(FeedDetailActivity.this);
-//            return fragment;
         }
 
         @Override

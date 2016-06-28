@@ -3,9 +3,12 @@ package com.example.xyzreader.ui;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GestureDetectorCompat;
 import android.text.Html;
 import android.text.format.DateUtils;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -30,7 +33,8 @@ public class ArticleDetailFragment extends Fragment {
     public static final String ARG_IMG_URL = "img_url";
     public static final String ARG_BODY = "body";
 
-    private OnScrollListener mOnScrollListener;
+    private DetailFragmentEventListener mDetailFragmentEventListener;
+    private GestureDetectorCompat mDetector;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -82,8 +86,30 @@ public class ArticleDetailFragment extends Fragment {
             @Override
             public void onScrollChanged(int oldt, int newt) {
                 imageView.setTranslationY(-newt * 0.75f);
-                if (mOnScrollListener != null)
-                        mOnScrollListener.contentScrolled(textContainer.getScrollY(), (newt - oldt));
+                if (mDetailFragmentEventListener != null)
+                        mDetailFragmentEventListener.onScroll(textContainer.getScrollY(), (newt - oldt));
+            }
+        });
+
+        mDetector = new GestureDetectorCompat(getActivity(), new GestureDetector.SimpleOnGestureListener(){
+            @Override
+            public boolean onSingleTapConfirmed(MotionEvent e) {
+                if (mDetailFragmentEventListener!=null)
+                    mDetailFragmentEventListener.onSingleTap();
+                return true;
+            }
+
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+        });
+
+        textContainer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                mDetector.onTouchEvent(motionEvent);
+                return view.onTouchEvent(motionEvent);
             }
         });
         return rootView;
@@ -124,18 +150,19 @@ public class ArticleDetailFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mOnScrollListener = (OnScrollListener) activity;
+            mDetailFragmentEventListener = (DetailFragmentEventListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnScrollListener");
         }
     }
 
-    public void setOnScrollListener(OnScrollListener onScrollListener) {
-        this.mOnScrollListener = onScrollListener;
+    public void setDetailFragmentEventListener(DetailFragmentEventListener detailFragmentEventListener) {
+        this.mDetailFragmentEventListener = detailFragmentEventListener;
     }
 
-    interface OnScrollListener {
-        void contentScrolled(int scrollY, int dy);
+    interface DetailFragmentEventListener {
+        void onScroll(int scrollY, int dy);
+        void onSingleTap();
     }
 }
