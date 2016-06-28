@@ -17,15 +17,16 @@
 package com.example.xyzreader.ui;
 
 import android.content.Context;
-import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ScrollView;
 
 /**
  * A custom ScrollView that can accept a scroll listener.
  */
 public class ObservableScrollView extends ScrollView {
+
+    private static final String LOG_TAG = ObservableScrollView.class.getSimpleName();
+
     private Callbacks mCallbacks;
 
     public ObservableScrollView(Context context, AttributeSet attrs) {
@@ -36,30 +37,15 @@ public class ObservableScrollView extends ScrollView {
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
         if (mCallbacks != null) {
-            mCallbacks.onScrollChanged();
+            mCallbacks.onScrollChanged(oldt, t);
         }
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-        int scrollY = getScrollY();
-        // hack to call onScrollChanged on screen rotate
-        if (scrollY > 0 && mCallbacks != null) {
-            mCallbacks.onScrollChanged();
-        }
-    }
-
-    @Override
-    public int computeVerticalScrollRange() {
-        return super.computeVerticalScrollRange();
     }
 
     public void setCallbacks(Callbacks listener) {
         mCallbacks = listener;
     }
 
-    public static interface Callbacks {
-        public void onScrollChanged();
+    public interface Callbacks {
+        void onScrollChanged(int oldt, int newt);
     }
 }

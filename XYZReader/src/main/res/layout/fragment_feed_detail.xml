@@ -143,41 +143,20 @@
              android:layout_height="match_parent"
              >
 
-    <android.support.v4.widget.NestedScrollView
-
-        android:id="@+id/image_container"
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/image_view_feed_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_text_top_margin"
-        >
+        android:layout_height="@dimen/hero_image_height"
+        android:scaleType="centerCrop"
+        android:background="@color/photo_placeholder"
+        tools:src="@drawable/p004"
+        />
 
-        <!--<android.support.v4.widget.NestedScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!-- -->
-        <!--</android.support.v4.widget.NestedScrollView>-->
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.android.volley.toolbox.NetworkImageView
-                android:id="@+id/image_view_feed_image"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/hero_image_height"
-                android:paddingBottom="@dimen/hero_image_bottom_padding"
-                android:scaleType="centerCrop"
-                android:background="@color/photo_placeholder"
-                tools:src="@drawable/p004"
-                />
-
-        </FrameLayout>
-
-
-    </android.support.v4.widget.NestedScrollView>
-
-    <com.example.xyzreader.ui.ObservableNestedScrollView
+    <com.example.xyzreader.ui.ObservableScrollView
         android:id="@+id/text_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -185,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/detail_text_top_margin"
+                android:layout_marginTop="@dimen/hero_image_height"
                 android:paddingStart="@dimen/abc_action_bar_content_inset_material"
                 android:paddingEnd="@dimen/abc_action_bar_content_inset_material"
                 android:paddingBottom="@dimen/detail_body_bottom_margin"
@@ -222,7 +201,7 @@
             </LinearLayout>
         </FrameLayout>
 
-    </com.example.xyzreader.ui.ObservableNestedScrollView>
+    </com.example.xyzreader.ui.ObservableScrollView>
 
 
 

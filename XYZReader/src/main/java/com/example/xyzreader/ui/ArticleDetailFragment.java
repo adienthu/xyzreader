@@ -3,7 +3,6 @@ package com.example.xyzreader.ui;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.NestedScrollView;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -77,17 +76,16 @@ public class ArticleDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_feed_detail, container, false);
         bindViews(rootView);
 
-        final NestedScrollView imageContainer = (NestedScrollView)rootView.findViewById(R.id.image_container);
-        final ObservableNestedScrollView textContainer = (ObservableNestedScrollView)rootView.findViewById(R.id.text_container);
-        textContainer.setOnScrollListener(new ObservableNestedScrollView.OnScrollListener() {
+        final NetworkImageView imageView = (NetworkImageView)rootView.findViewById(R.id.image_view_feed_image);
+        final ObservableScrollView textContainer = (ObservableScrollView)rootView.findViewById(R.id.text_container);
+        textContainer.setCallbacks(new ObservableScrollView.Callbacks() {
             @Override
-            public void onScroll(int dx, int dy) {
-                imageContainer.scrollBy(0, (int) Math.floor(dy * 0.5));
+            public void onScrollChanged(int oldt, int newt) {
+                imageView.setTranslationY(-newt * 0.75f);
                 if (mOnScrollListener != null)
-                    mOnScrollListener.contentScrolled(textContainer.getScrollY(), dy);
+                        mOnScrollListener.contentScrolled(textContainer.getScrollY(), (newt - oldt));
             }
         });
-
         return rootView;
     }
 

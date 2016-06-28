@@ -121,7 +121,7 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public void contentScrolled(int scrollY, int dy) {
-        Log.d(LOG_TAG, "Content scrolled");
+//        Log.d(LOG_TAG, "Content scrolled");
         if (dy > 0) {
             if (mToolbar.getTranslationY() == 0)
             {
