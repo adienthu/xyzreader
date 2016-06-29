@@ -1,0 +1,4 @@
+<resources>
+    <!-- detail -->
+    <dimen name="detail_body_bottom_margin">96dp</dimen>
+</resources>
