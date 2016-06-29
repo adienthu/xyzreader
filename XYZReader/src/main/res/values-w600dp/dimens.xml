@@ -1,4 +1,5 @@
 <resources>
     <!-- detail -->
     <dimen name="detail_body_bottom_margin">96dp</dimen>
+    <dimen name="detail_image_height">320dp</dimen>
 </resources>
