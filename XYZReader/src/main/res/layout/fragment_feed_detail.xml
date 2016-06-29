@@ -146,7 +146,7 @@
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/image_view_feed_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/hero_image_height"
+        android:layout_height="@dimen/detail_image_height"
         android:scaleType="centerCrop"
         android:background="@color/photo_placeholder"
         tools:src="@drawable/p004"
@@ -164,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/hero_image_height"
+                android:layout_marginTop="@dimen/detail_image_height"
                 android:paddingStart="@dimen/abc_action_bar_content_inset_material"
                 android:paddingEnd="@dimen/abc_action_bar_content_inset_material"
                 android:paddingBottom="@dimen/detail_body_bottom_margin"
