@@ -37,4 +37,9 @@
         <item name="android:layout_marginRight">8dp</item>
         <item name="android:layout_marginBottom">0dp</item>
     </style>
+
+    <style name="DetailImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/detail_image_height</item>
+    </style>
 </resources>

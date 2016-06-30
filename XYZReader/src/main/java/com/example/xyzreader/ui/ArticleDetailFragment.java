@@ -85,7 +85,9 @@ public class ArticleDetailFragment extends Fragment {
         textContainer.setCallbacks(new ObservableScrollView.Callbacks() {
             @Override
             public void onScrollChanged(int oldt, int newt) {
-                imageView.setTranslationY(-newt * 0.75f);
+                final boolean isCard = getResources().getBoolean(R.bool.detail_is_card);
+                if (!isCard)
+                    imageView.setTranslationY(-newt * 0.75f);
                 if (mDetailFragmentEventListener != null)
                         mDetailFragmentEventListener.onScroll(textContainer.getScrollY(), (newt - oldt));
             }

@@ -145,8 +145,7 @@
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/image_view_feed_image"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_image_height"
+        style="@style/DetailImage"
         android:scaleType="centerCrop"
         android:background="@color/photo_placeholder"
         tools:src="@drawable/p004"
@@ -160,14 +159,18 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinearLayout
+            <com.example.xyzreader.ui.MaxWidthLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxWidth="@dimen/detail_card_max_width"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/detail_image_height"
+                android:layout_marginTop="@dimen/detail_text_top_margin"
                 android:paddingStart="@dimen/abc_action_bar_content_inset_material"
                 android:paddingEnd="@dimen/abc_action_bar_content_inset_material"
                 android:paddingBottom="@dimen/detail_body_bottom_margin"
+                android:layout_marginStart="@dimen/detail_text_horiz_margin"
+                android:layout_marginEnd="@dimen/detail_text_horiz_margin"
+                android:layout_gravity="center_horizontal"
                 android:background="@android:color/white">
                 <TextView
                     android:id="@+id/text_view_title"
@@ -198,7 +201,7 @@
                     android:textSize="@dimen/detail_body_text_size"
                     android:textColor="@android:color/black"
                     />
-            </LinearLayout>
+            </com.example.xyzreader.ui.MaxWidthLinearLayout>
         </FrameLayout>
 
     </com.example.xyzreader.ui.ObservableScrollView>

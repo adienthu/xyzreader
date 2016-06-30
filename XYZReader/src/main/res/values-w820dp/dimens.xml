@@ -6,4 +6,9 @@
 
     <!-- list -->
     <integer name="list_column_count">3</integer>
+    <!-- detail -->
+    <bool name="detail_is_card">true</bool>
+    <dimen name="detail_text_horiz_margin">48dp</dimen>
+    <dimen name="detail_card_max_width">704dp</dimen>
+    <dimen name="detail_text_top_margin">156dp</dimen>
 </resources>

@@ -3,6 +3,7 @@
     <integer name="list_column_count">2</integer>
 
     <!-- detail -->
+    <bool name="detail_is_card">false</bool>
     <dimen name="detail_title_text_size">32sp</dimen>
     <dimen name="detail_byline_text_size">16sp</dimen>
     <dimen name="detail_body_text_size">20sp</dimen>
@@ -10,6 +11,9 @@
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="detail_image_height">240dp</dimen>
+    <dimen name="detail_text_top_margin">@dimen/detail_image_height</dimen>
+    <dimen name="detail_text_horiz_margin">0dp</dimen>
+    <dimen name="detail_card_max_width">10000dp</dimen> <!-- force match_parent -->
 
 
     <!-- Default screen margins, per the Android Design guidelines. -->

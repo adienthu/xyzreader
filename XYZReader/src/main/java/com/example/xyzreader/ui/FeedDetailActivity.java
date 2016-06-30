@@ -176,11 +176,12 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         @Override
         public Fragment getItem(int position) {
             mCursor.moveToPosition(position);
+            final int imageURLColumn;
             return ArticleDetailFragment.newInstance(
                     mCursor.getString(ArticleLoader.Query.TITLE),
                     mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
                     mCursor.getString(ArticleLoader.Query.AUTHOR),
-                    mCursor.getString(ArticleLoader.Query.THUMB_URL),
+                    mCursor.getString(ArticleLoader.Query.PHOTO_URL),
                     mCursor.getString(ArticleLoader.Query.BODY)
             );
         }
