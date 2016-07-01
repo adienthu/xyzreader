@@ -5,17 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/ListPageSwipeLayout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_feeds"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/ListPageRecyclerView"
+            />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="128dp"
-        android:background="?colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        style="@style/ListPageAppBarLayout"
         >
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="?attr/colorPrimary"
             app:title="@string/app_name"
             app:expandedTitleMarginStart="72dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -30,40 +47,6 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
-        <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/toolbar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"-->
-        <!--app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"/>-->
-
     </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_feeds"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-    <!--<ListView-->
-    <!--android:id="@+id/listview_feeds"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-    <!--/>-->
-
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:id="@+id/recycler_view_feeds"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
 </android.support.design.widget.CoordinatorLayout>

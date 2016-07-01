@@ -42,4 +42,17 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/detail_image_height</item>
     </style>
+
+    <style name="ListPageSwipeLayout">
+        <item name="android:translationY">-10dp</item>
+    </style>
+
+    <style name="ListPageRecyclerView">
+        <item name="android:paddingTop">26dp</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <style name="ListPageAppBarLayout">
+        <item name="android:background">@drawable/shadow</item>
+    </style>
 </resources>
