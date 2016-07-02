@@ -1,0 +1,4 @@
+<resources>
+    <!-- list -->
+    <dimen name="list_appbar_height">120dp</dimen>
+</resources>

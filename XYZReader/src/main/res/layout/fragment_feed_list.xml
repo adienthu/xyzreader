@@ -23,7 +23,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="128dp"
+        android:layout_height="@dimen/list_appbar_height"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         style="@style/ListPageAppBarLayout"
         >
@@ -34,14 +34,14 @@
             android:layout_height="match_parent"
             android:background="?attr/colorPrimary"
             app:title="@string/app_name"
-            app:expandedTitleMarginStart="72dp"
+            app:expandedTitleMarginStart="@dimen/list_appbar_title_margin"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                app:contentInsetStart="72dp"
+                android:layout_height="@dimen/list_toolbar_height"
+                app:contentInsetStart="@dimen/list_appbar_title_margin"
                 app:layout_collapseMode="pin"
                 />
 

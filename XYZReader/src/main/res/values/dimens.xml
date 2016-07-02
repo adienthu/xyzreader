@@ -1,6 +1,9 @@
 <resources>
     <!-- list -->
     <integer name="list_column_count">2</integer>
+    <dimen name="list_appbar_height">138dp</dimen> <!-- an extra 10 dips due to the shadow -->
+    <dimen name="list_appbar_title_margin">16dp</dimen>
+    <dimen name="list_toolbar_height">56dp</dimen>
 
     <!-- detail -->
     <bool name="detail_is_card">false</bool>
@@ -8,8 +11,8 @@
     <dimen name="detail_byline_text_size">16sp</dimen>
     <dimen name="detail_body_text_size">20sp</dimen>
     <dimen name="detail_body_bottom_margin">88dp</dimen>
-    <dimen name="toolbar_height">66dp</dimen> <!-- an extra 10 dips due to the padding from the shadow -->
-    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="detail_toolbar_height">66dp</dimen> <!-- an extra 10 dips due to the padding from the shadow -->
+    <dimen name="detail_toolbar_elevation">4dp</dimen>
     <dimen name="detail_image_height">240dp</dimen>
     <dimen name="detail_text_top_margin">@dimen/detail_image_height</dimen>
     <dimen name="detail_text_horiz_margin">0dp</dimen>
