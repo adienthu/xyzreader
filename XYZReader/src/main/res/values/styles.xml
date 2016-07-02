@@ -34,7 +34,9 @@
     <style name="detail_fab">
         <item name="android:layout_marginTop">0dp</item>
         <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginStart">0dp</item>
         <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
         <item name="android:layout_marginBottom">0dp</item>
     </style>
 
