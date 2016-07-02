@@ -48,7 +48,7 @@
     </style>
 
     <style name="ListPageRecyclerView">
-        <item name="android:paddingTop">26dp</item> <!-- an extra 10 dips to account for the translation -->
+        <item name="android:paddingTop">10dp</item> <!-- an extra 10 dips to account for the translation -->
         <item name="android:clipToPadding">false</item>
     </style>
 
