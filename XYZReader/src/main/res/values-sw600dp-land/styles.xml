@@ -21,9 +21,9 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="DetailPageTextContainer">
+    <style name="DetailPageTextContainer"> <!-- for pre-21 tablets in landscape mode -->
         <item name="android:paddingTop">@dimen/abc_action_bar_content_inset_material</item>
-        <item name="android:paddingLeft">31dp</item>
+        <item name="android:paddingLeft">31dp</item> <!-- extra 7 dips to account for the shadow padding -->
         <item name="android:paddingRight">31dp</item>
         <item name="android:paddingStart">31dp</item>
         <item name="android:paddingEnd">31dp</item>
