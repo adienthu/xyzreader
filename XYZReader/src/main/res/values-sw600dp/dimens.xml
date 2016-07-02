@@ -1,4 +1,9 @@
 <resources>
+    <!-- list -->
+    <dimen name="list_appbar_height">138dp</dimen> <!-- an extra 10 dips due to the shadow -->
+    <dimen name="list_appbar_title_margin">24dp</dimen>
+    <dimen name="list_toolbar_height">64dp</dimen>
+
     <!-- detail -->
     <dimen name="detail_body_bottom_margin">96dp</dimen>
     <dimen name="detail_image_height">320dp</dimen>
