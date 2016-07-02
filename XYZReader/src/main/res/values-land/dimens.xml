@@ -2,4 +2,7 @@
     <!-- list -->
     <dimen name="list_appbar_height">130dp</dimen> <!-- 48 default + 72 (expansion) + 10 (shadow) -->
     <dimen name="list_toolbar_height">48dp</dimen>
+
+    <!-- detail -->
+    <dimen name="detail_toolbar_height">58dp</dimen>
 </resources>

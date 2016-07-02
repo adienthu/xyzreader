@@ -1,4 +1,7 @@
 <resources>
     <!-- list -->
     <dimen name="list_appbar_height">120dp</dimen>
+
+    <!-- detail -->
+    <dimen name="detail_toolbar_height">48dp</dimen>
 </resources>
