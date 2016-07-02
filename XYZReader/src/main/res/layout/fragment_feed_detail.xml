@@ -59,6 +59,7 @@
                     android:textStyle="normal"
                     android:textSize="@dimen/detail_body_text_size"
                     android:textColor="@android:color/black"
+                    android:autoLink="web"
                     />
             </com.example.xyzreader.ui.MaxWidthLinearLayout>
         </FrameLayout>
