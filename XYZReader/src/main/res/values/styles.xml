@@ -55,4 +55,14 @@
     <style name="ListPageAppBarLayout">
         <item name="android:background">@drawable/shadow</item>
     </style>
+
+    <style name="DetailPageTextContainer">
+        <item name="android:paddingTop">@dimen/abc_action_bar_content_inset_material</item>
+        <item name="android:paddingLeft">@dimen/abc_action_bar_content_inset_material</item>
+        <item name="android:paddingRight">@dimen/abc_action_bar_content_inset_material</item>
+        <item name="android:paddingStart">@dimen/abc_action_bar_content_inset_material</item>
+        <item name="android:paddingEnd">@dimen/abc_action_bar_content_inset_material</item>
+        <item name="android:paddingBottom">@dimen/detail_body_bottom_margin</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
 </resources>

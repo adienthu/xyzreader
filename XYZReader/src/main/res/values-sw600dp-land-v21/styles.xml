@@ -16,18 +16,14 @@
 -->
 
 <resources>
-    <style name="DetailImage">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
-
     <style name="DetailPageTextContainer">
         <item name="android:paddingTop">@dimen/abc_action_bar_content_inset_material</item>
-        <item name="android:paddingLeft">31dp</item>
-        <item name="android:paddingRight">31dp</item>
-        <item name="android:paddingStart">31dp</item>
-        <item name="android:paddingEnd">31dp</item>
+        <item name="android:paddingLeft">@dimen/abc_action_bar_content_inset_material</item>
+        <item name="android:paddingRight">@dimen/abc_action_bar_content_inset_material</item>
+        <item name="android:paddingStart">@dimen/abc_action_bar_content_inset_material</item>
+        <item name="android:paddingEnd">@dimen/abc_action_bar_content_inset_material</item>
         <item name="android:paddingBottom">@dimen/detail_body_bottom_margin</item>
-        <item name="android:background">@drawable/tablet_detail_textcontainer_bg</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:elevation">4dp</item>
     </style>
 </resources>
