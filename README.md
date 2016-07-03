@@ -1,0 +1,1 @@
+## A sample app developed using Material Design as part of the Udacity Android course.
