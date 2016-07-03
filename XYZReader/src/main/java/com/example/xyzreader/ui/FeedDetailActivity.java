@@ -59,7 +59,6 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
                 if (mCursor != null) {
                     mCursor.moveToPosition(position);
                     mCurrentPos = position;
-                    Log.d(LOG_TAG, "Current position " + mCurrentPos);
                 }
             }
 
@@ -101,7 +100,6 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
                 if (mCursor.getLong(ArticleLoader.Query._ID) == mStartId) {
                     mCurrentPos = mCursor.getPosition();
                     mPager.setCurrentItem(mCurrentPos, false);
-                    Log.d(LOG_TAG, "Current position " + mCurrentPos);
                     break;
                 }
                 mCursor.moveToNext();
