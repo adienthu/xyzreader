@@ -2,7 +2,8 @@
     <!-- list -->
     <integer name="list_column_count">2</integer>
     <dimen name="list_appbar_height">138dp</dimen> <!-- an extra 10 dips due to the shadow -->
-    <dimen name="list_appbar_title_margin">16dp</dimen>
+    <dimen name="list_appbar_title_collapsed_margin">16dp</dimen>
+    <dimen name="list_appbar_title_expanded_margin">72dp</dimen>
     <dimen name="list_toolbar_height">56dp</dimen>
 
     <!-- detail -->

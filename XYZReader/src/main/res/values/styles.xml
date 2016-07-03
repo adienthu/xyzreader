@@ -67,4 +67,13 @@
         <item name="android:paddingBottom">@dimen/detail_body_bottom_margin</item>
         <item name="android:background">@android:color/white</item>
     </style>
+
+    <style name="ExpandedTitleTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="CollapsedTitleTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

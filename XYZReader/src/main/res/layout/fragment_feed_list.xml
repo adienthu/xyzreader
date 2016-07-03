@@ -34,14 +34,16 @@
             android:layout_height="match_parent"
             android:background="?attr/colorPrimary"
             app:title="@string/app_name"
-            app:expandedTitleMarginStart="@dimen/list_appbar_title_margin"
+            app:expandedTitleMarginStart="@dimen/list_appbar_title_expanded_margin"
+            app:expandedTitleTextAppearance="@style/ExpandedTitleTextAppearance"
+            app:collapsedTitleTextAppearance="@style/CollapsedTitleTextAppearance"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_toolbar_height"
-                app:contentInsetStart="@dimen/list_appbar_title_margin"
+                app:contentInsetStart="@dimen/list_appbar_title_collapsed_margin"
                 app:layout_collapseMode="pin"
                 />
 
