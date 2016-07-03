@@ -23,9 +23,6 @@ import com.example.xyzreader.R;
 public class ArticleDetailFragment extends Fragment {
     private static final String TAG = "ArticleDetailFragment";
 
-    // TODO: remove
-    public static final String ARG_ITEM_ID = "item_id";
-
     public static final String ARG_TITLE = "title";
     public static final String ARG_PUBLISH_DATE = "publish_date";
     public static final String ARG_AUTHOR = "author";
@@ -40,15 +37,6 @@ public class ArticleDetailFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public ArticleDetailFragment() {
-    }
-
-    // TODO: remove
-    public static ArticleDetailFragment newInstance(long itemId) {
-        Bundle arguments = new Bundle();
-        arguments.putLong(ARG_ITEM_ID, itemId);
-        ArticleDetailFragment fragment = new ArticleDetailFragment();
-        fragment.setArguments(arguments);
-        return fragment;
     }
 
     public static ArticleDetailFragment newInstance(String title, long publishDate, String author, String imgURL, String body) {
@@ -141,11 +129,6 @@ public class ArticleDetailFragment extends Fragment {
         bodyLabel.setText(Html.fromHtml(getArguments().getString(ARG_BODY)));
     }
 
-    // TODO: remove
-    public int getUpButtonFloor() {
-        return 0;
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -155,10 +138,6 @@ public class ArticleDetailFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnScrollListener");
         }
-    }
-
-    public void setDetailFragmentEventListener(DetailFragmentEventListener detailFragmentEventListener) {
-        this.mDetailFragmentEventListener = detailFragmentEventListener;
     }
 
     interface DetailFragmentEventListener {

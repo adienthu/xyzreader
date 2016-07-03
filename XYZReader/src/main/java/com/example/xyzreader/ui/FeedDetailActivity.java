@@ -29,7 +29,6 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
     private Cursor mCursor;
     private long mStartId;
 
-    private long mSelectedItemId;
     private int mCurrentPos;
 
     private ViewPager mPager;
@@ -62,7 +61,6 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
                     mCurrentPos = position;
                     Log.d(LOG_TAG, "Current position " + mCurrentPos);
                 }
-                mSelectedItemId = mCursor.getLong(ArticleLoader.Query._ID);
             }
 
             @Override
@@ -81,7 +79,6 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         if (savedInstanceState == null) {
             if (getIntent() != null && getIntent().getData() != null) {
                 mStartId = ItemsContract.Items.getItemId(getIntent().getData());
-                mSelectedItemId = mStartId;
             }
         }
     }
