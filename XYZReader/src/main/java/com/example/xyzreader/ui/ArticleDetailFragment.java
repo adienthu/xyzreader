@@ -18,8 +18,7 @@ import com.example.xyzreader.R;
 
 /**
  * A fragment representing a single Article detail screen. This fragment is
- * either contained in a {@link ArticleListActivity} in two-pane mode (on
- * tablets) or a {@link FeedDetailActivity} on handsets.
+ * contained in a {@link FeedDetailActivity}.
  */
 public class ArticleDetailFragment extends Fragment {
     private static final String TAG = "ArticleDetailFragment";
@@ -122,7 +121,6 @@ public class ArticleDetailFragment extends Fragment {
             return;
         }
 
-//        rootView.setVisibility(View.VISIBLE);
         TextView titleLabel = (TextView)rootView.findViewById(R.id.text_view_title);
         titleLabel.setText(getArguments().getString(ARG_TITLE));
 

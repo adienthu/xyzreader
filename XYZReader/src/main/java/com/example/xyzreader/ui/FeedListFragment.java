@@ -47,7 +47,6 @@ public class FeedListFragment extends Fragment {
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
 
         mFeedsRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_feeds);
-//        mFeedsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         int columnCount = getResources().getInteger(R.integer.list_column_count);
         StaggeredGridLayoutManager sglm =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
