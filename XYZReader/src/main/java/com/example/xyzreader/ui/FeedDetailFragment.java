@@ -101,6 +101,15 @@ public class FeedDetailFragment extends Fragment {
                 return view.onTouchEvent(motionEvent);
             }
         });
+
+        final TextView bodyTextView = (TextView)textContainer.findViewById(R.id.text_view_feed_body);
+        bodyTextView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                mDetector.onTouchEvent(motionEvent);
+                return view.onTouchEvent(motionEvent);
+            }
+        });
         return rootView;
     }
 
