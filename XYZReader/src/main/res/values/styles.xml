@@ -70,7 +70,7 @@
 
     <style name="ExpandedTitleTextAppearance" parent="@android:style/TextAppearance">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">36sp</item>
     </style>
     <style name="CollapsedTitleTextAppearance" parent="@android:style/TextAppearance">
         <item name="android:textColor">@android:color/white</item>

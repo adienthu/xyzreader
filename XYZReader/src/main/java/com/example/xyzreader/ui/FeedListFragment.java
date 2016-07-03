@@ -2,6 +2,7 @@ package com.example.xyzreader.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -42,7 +43,11 @@ public class FeedListFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_feed_list, container, false);
 
-        ((CollapsingToolbarLayout)rootView.findViewById(R.id.collapsing_toolbar_layout)).setTitle(getString(R.string.app_name));
+        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)rootView.findViewById(R.id.collapsing_toolbar_layout);
+        collapsingToolbarLayout.setTitle(getString(R.string.app_name));
+        Typeface robotoBlack = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
+        collapsingToolbarLayout.setExpandedTitleTypeface(robotoBlack);
+        collapsingToolbarLayout.setCollapsedTitleTypeface(robotoBlack);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
 

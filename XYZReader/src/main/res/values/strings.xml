@@ -1,6 +1,6 @@
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
 
-    <string name="app_name">XYZ Reader</string>
+    <string name="app_name">xyz reader</string>
 
     <string name="action_refresh">Refresh</string>
     <string name="action_settings">Settings</string>
