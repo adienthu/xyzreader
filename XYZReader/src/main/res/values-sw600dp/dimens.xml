@@ -1,6 +1,6 @@
 <resources>
     <!-- list -->
-    <dimen name="list_appbar_height">138dp</dimen> <!-- an extra 10 dips due to the shadow -->
+    <dimen name="list_appbar_height">154dp</dimen> <!-- an extra 10 dips for pre-21 devices due to the shadow -->
     <dimen name="list_appbar_title_collapsed_margin">24dp</dimen>
     <dimen name="list_toolbar_height">64dp</dimen>
 
