@@ -16,7 +16,7 @@ import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
 import com.example.xyzreader.data.UpdaterService;
 
-public class FeedListActivity2 extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, FeedListFragment.EventCallback, FeedListFragment.DataSource {
+public class FeedListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, FeedListFragment.EventCallback, FeedListFragment.DataSource {
 
     private final static String DETAIL_FRAGMENT_TAG = "DFTAG";
 
@@ -26,7 +26,7 @@ public class FeedListActivity2 extends AppCompatActivity implements LoaderManage
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed_list2);
+        setContentView(R.layout.activity_feed_list);
 
         getLoaderManager().initLoader(0, null, this);
 

@@ -22,7 +22,7 @@ import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
 
-public class FeedDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, ArticleDetailFragment.DetailFragmentEventListener {
+public class FeedDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, FeedDetailFragment.DetailFragmentEventListener {
 
     private static final String LOG_TAG = FeedDetailActivity.class.getSimpleName();
 
@@ -173,8 +173,7 @@ public class FeedDetailActivity extends AppCompatActivity implements LoaderManag
         @Override
         public Fragment getItem(int position) {
             mCursor.moveToPosition(position);
-            final int imageURLColumn;
-            return ArticleDetailFragment.newInstance(
+            return FeedDetailFragment.newInstance(
                     mCursor.getString(ArticleLoader.Query.TITLE),
                     mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
                     mCursor.getString(ArticleLoader.Query.AUTHOR),

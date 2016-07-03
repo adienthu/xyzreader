@@ -17,11 +17,11 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.example.xyzreader.R;
 
 /**
- * A fragment representing a single Article detail screen. This fragment is
+ * A fragment representing a single feed detail screen. This fragment is
  * contained in a {@link FeedDetailActivity}.
  */
-public class ArticleDetailFragment extends Fragment {
-    private static final String TAG = "ArticleDetailFragment";
+public class FeedDetailFragment extends Fragment {
+    private static final String TAG = "FeedDetailFragment";
 
     public static final String ARG_TITLE = "title";
     public static final String ARG_PUBLISH_DATE = "publish_date";
@@ -36,17 +36,17 @@ public class ArticleDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ArticleDetailFragment() {
+    public FeedDetailFragment() {
     }
 
-    public static ArticleDetailFragment newInstance(String title, long publishDate, String author, String imgURL, String body) {
+    public static FeedDetailFragment newInstance(String title, long publishDate, String author, String imgURL, String body) {
         Bundle arguments = new Bundle();
         arguments.putString(ARG_TITLE, title);
         arguments.putLong(ARG_PUBLISH_DATE, publishDate);
         arguments.putString(ARG_AUTHOR, author);
         arguments.putString(ARG_IMG_URL, imgURL);
         arguments.putString(ARG_BODY, body);
-        ArticleDetailFragment fragment = new ArticleDetailFragment();
+        FeedDetailFragment fragment = new FeedDetailFragment();
         fragment.setArguments(arguments);
         return fragment;
     }

@@ -27,7 +27,7 @@
             android:name=".ui.FeedDetailActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".ui.FeedListActivity2" >
+            android:parentActivityName=".ui.FeedListActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -38,10 +38,10 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.xyzreader.ui.FeedListActivity2" />
+                android:value=".ui.FeedListActivity" />
         </activity>
         <activity
-            android:name=".ui.FeedListActivity2"
+            android:name=".ui.FeedListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
