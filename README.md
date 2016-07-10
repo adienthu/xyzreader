@@ -39,6 +39,7 @@ The content view is a `ViewPager` allowing the user to swipe between feeds. On t
 
 A FAB for sharing the current feed is shown at the bottom-right corner.
 
+#### Motion
 Both the FAB and the toolbar go out of view when the text is scrolled down and are brought back into view when scrolled up. Their appearance can also be toggled by a simple tap anywhere in the screen. This tap gesture is detected using the GestureDetector built-in class (see [FeedDetailFragment.java](XYZReader/src/main/java/com/example/xyzreader/ui/FeedDetailFragment.java)).
 
 In the default layout wherein the image is stacked on top of the text, parallax scrolling has been implemented to create the effect of text scrolling over the image. For achieving this a custom `ScrollView` called `ObservableScrollView` was used to hold the text. Changes in the top y-coordinate of the scrollview is observed and the image is translated accordingly.
