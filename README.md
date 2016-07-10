@@ -1,5 +1,5 @@
 # XYZ Reader
-Demos the application of Material Design principles to a feed reader UI. Built as part of the Udacity Android Course.
+A sample app that demonstrates Material Design principles. Built as part of the Udacity Android Course.
 
 ## Prerequisites
 - Android SDK v24
